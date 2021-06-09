@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Conditional Rendering</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url('images/solar.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        h1 {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-shadow: 2px 1px 2px rgba(16, 17, 17, 0.363);
+        }
+        
+        .planets {
+            background-color: rgba(33, 76, 93, 0.966);
+        }
+        
+        .bounce-enter-active {
+            animation: bounce-in .5s;
+        }
+        
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
+        }
+        
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" class="container mx-auto px-0 overflow-hidden">
+        <header class="jumbotron my-0 p-0">
+            <h1 class="display-4 text-center  text-info"> <span class="text-danger">Vue</span> {{apptitle}}</h1>
+
+            <div class="row planets  py-2 px-3 justify-content-center">
+                <div v-for="planet in planets" class="col-md-3 text-white">
+                    <h2>{{planet.name}}</h2>
+                    <label class="d-inline-block">Load <input name="load" v-model="planet.load" type="checkbox">
+                    </label>
+                    <label class="d-inline-block">Show <input name="show" v-model="planet.show" type="checkbox">
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <section class="my-5">
+            <div class="row">
+                <planet-item v-for="planet in planets" v-bind:title="planet.name" v-bind:image="planet.image" v-bind:load="planet.load" v-bind:show="planet.show" v-bind:text="planet.text">
+                </planet-item>
+            </div>
+        </section>
+    </div>
+    <script src="vue.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
